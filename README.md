@@ -382,11 +382,14 @@ $env:GPU_FEM_PYTHON = "$HOME\anaconda3\envs\cuda121\python.exe"
 
 ```bibtex
 @article{yang2026fused,
-  author  = {Yang, Shaoliang and Wang, Jun and Wang, Yunsheng},
-  title   = {Matrix-Free {3D} {SIMP} Topology Optimization with Fused
-             Gather-{GEMM}-Scatter Kernels},
-  year    = {2026},
-  note    = {arXiv preprint}
+  author        = {Yang, Shaoliang and Wang, Jun and Wang, Yunsheng},
+  title         = {Matrix-Free {3D} {SIMP} Topology Optimization with Fused
+                   Gather-{GEMM}-Scatter Kernels},
+  year          = {2026},
+  eprint        = {2604.18020},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CE},
+  url           = {https://arxiv.org/abs/2604.18020}
 }
 ```
 
