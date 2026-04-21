@@ -1,0 +1,35 @@
+# Runtime dependencies for the matrix-free 3D SIMP topology optimization
+# package and its experiment scripts.
+#
+# Reproducing the paper additionally requires a CUDA-capable NVIDIA GPU and
+# a working CUDA toolchain (CuPy NVRTC needs nvcc). Versions used during
+# manuscript preparation are pinned in repro_environment.txt.
+
+# Core scientific stack
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.7
+pandas>=2.0
+
+# 3D rendering / marching cubes for topology figures
+scikit-image>=0.20
+
+# GPU backends
+# - CuPy: primary path used by the fused gather-GEMM-scatter kernel.
+#   Install the wheel matching your CUDA toolkit, e.g. cupy-cuda12x for CUDA 12.
+# cupy-cuda12x>=13.0
+# - PyTorch: required for the BF16 WMMA tensor-core path. Install with the
+#   CUDA build matching your GPU, e.g.
+#       pip install torch --index-url https://download.pytorch.org/whl/cu121
+torch>=2.3
+
+# Optional: 3D isosurface rendering (used by scripts/generate_topology_renders.py)
+# pyvista>=0.43
+
+# Optional: CPU baseline comparison (experiments/phase3/cpu_baseline_comparison.py)
+# pytopo3d==0.1.0
+# pypardiso>=0.4
+
+# Optional: Nsight Compute CLI wrapper (experiments/phase3/ncu_profile.py)
+# Requires the system-installed `ncu` binary from
+# https://developer.nvidia.com/nsight-compute

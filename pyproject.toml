@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gpu-fem"
+version = "0.1.0"
+description = "Matrix-free 3D SIMP topology optimization with fused gather-GEMM-scatter kernels."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "BSD-3-Clause" }
+authors = [
+  { name = "Shaoliang Yang" },
+  { name = "Jun Wang" },
+  { name = "Yunsheng Wang" }
+]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]

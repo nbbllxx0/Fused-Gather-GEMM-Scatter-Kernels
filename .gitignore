@@ -1,0 +1,43 @@
+# Python build / cache
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+
+# CuPy NVRTC and runtime tmp scratch (created by experiment scripts)
+.cupy_cache/
+.runtime_tmp/
+
+# Local working scratch
+tmp/
+runs/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# LaTeX intermediates (in case anyone drops a paper subdir locally)
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Generated experiment outputs — readers regenerate locally, not version-controlled
+experiments/phase3/**/*.csv
+experiments/phase3/**/*.json
+experiments/phase3/**/*.npy
+experiments/phase3/topology_renders/
+
+# Generated figures — written by scripts/plot_phase3_figures.py and
+# scripts/generate_topology_renders.py
+figs/
+figures/
+
+# Editor / virtualenv local files
+.venv/
+.idea/
+.vscode/

@@ -1,0 +1,17 @@
+# Pinned runtime package list (reported environment)
+# OS: Windows 10.0.26200.8037
+# GPU driver: NVIDIA 595.71
+# CUDA runtime (reported by CuPy): 12090
+
+python==3.11
+cupy==13.6.0
+torch==2.5.1
+numpy==2.2.6
+scipy==1.15.3
+matplotlib==3.10.7
+scikit-image==0.25.2
+pandas==2.3.3
+pyvista==0.46.3
+PyTopo3D==0.1.0
+PyPardiso==0.4.7
+CPU thread-affinity settings==default host scheduling; no explicit pinning
