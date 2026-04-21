@@ -25,14 +25,14 @@ and the optional CPU PyTopo3D rerun).
 
 ```
 .
-├── src/gpu_fem/             package source (solver + presets + public CLI)
-├── experiments/phase3/      one script per paper table / figure data file
-├── scripts/                 plotting, rendering, VRAM probe
-├── pyproject.toml           editable-install metadata
-├── requirements.txt         runtime deps (CuPy and PyTorch noted in comments)
-├── repro_environment.txt    pinned versions used for the reported runs
-├── CITATION.bib             citation entry
-└── LICENSE                  BSD 3-Clause
+|- src/gpu_fem/             package source (solver + presets + public CLI)
+|- experiments/phase3/      one script per paper table / figure data file
+|- scripts/                 plotting, rendering, VRAM probe
+|- pyproject.toml           editable-install metadata
+|- requirements.txt         runtime deps (CuPy and PyTorch noted in comments)
+|- repro_environment.txt    pinned versions used for the reported runs
+|- CITATION.bib             citation entry
+`- LICENSE                  BSD 3-Clause
 ```
 
 ---
@@ -85,7 +85,7 @@ pip install pytopo3d pypardiso       # CPU PyTopo3D baseline comparison
 
 All experiment scripts write CSV/JSON files into `experiments/phase3/`.
 All plotting scripts write PDFs/PNGs into `figs/`. Both directories are
-created on demand and are listed in `.gitignore` — readers regenerate
+created on demand and are listed in `.gitignore` - readers regenerate
 everything from source.
 
 The full reproduction takes **two phases**: (1) run the experiment scripts to
@@ -346,7 +346,7 @@ The suite runner aggregates per-case outputs into `summary.json` and
 
 Every experiment script under `experiments/phase3/` checks for an optional
 environment variable `GPU_FEM_PYTHON`. If set to a Python interpreter path,
-the script re-execs itself under that interpreter — useful when CuPy lives in
+the script re-execs itself under that interpreter - useful when CuPy lives in
 a separate conda env. If unset, the scripts run under whatever Python invoked
 them. Set it like:
 
@@ -366,7 +366,7 @@ $env:GPU_FEM_PYTHON = "$HOME\anaconda3\envs\cuda121\python.exe"
   default 450 W power limit.
 - The condition-number, determinism, and BF16 smoke-test workflows use
   fixed seeds (42 for power iteration, 123 for inverse iteration; the
-  determinism workflow uses its own seeds — see source).
+  determinism workflow uses its own seeds - see source).
 - SIMP "selected" compliance reports the lowest-compliance iterate among
   iterates that pass the validity gate (`penal >= 3.0`, grayness < 0.25).
 - The fused path delivers measured 6.0-6.6x per-matvec speedup over the

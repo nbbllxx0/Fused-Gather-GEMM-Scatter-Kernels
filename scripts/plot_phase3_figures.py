@@ -13,7 +13,7 @@ Figures produced:
   F9  profiler_bars.pdf    - Synthetic hot-path gather/GEMM/scatter breakdown
 
 All CSVs live under experiments/phase3/ and figures write to
-papers/paper/figs/.
+figs/.
 Run with no arguments: python scripts/plot_phase3_figures.py
 """
 from __future__ import annotations

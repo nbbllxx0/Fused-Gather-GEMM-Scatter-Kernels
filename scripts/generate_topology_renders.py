@@ -10,8 +10,8 @@ Two-phase script:
                           publication-quality isosurface PDF figures.
 
 Problems:
-  cantilever_216k : 120鑴?0鑴?0  (216 k elements, standard benchmark)
-  torsion_500k    : 165鑴?5鑴?5  (499 k elements, hard-problem benchmark)
+  cantilever_216k : 120x60x30  (216 k elements, standard benchmark)
+  torsion_500k    : 165x55x55  (499 k elements, hard-problem benchmark)
 
 Usage (run from repo root):
     python scripts/generate_topology_renders.py --run-simp
@@ -31,7 +31,7 @@ import subprocess
 from pathlib import Path
 
 
-# 閳光偓閳光偓 Bootstrap to Pytorch conda env 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
+# Bootstrap to a separate Python env when GPU_FEM_PYTHON is set.
 def _bootstrap():
     root        = Path(__file__).resolve().parents[1]
     runtime_tmp = root / ".runtime_tmp"
@@ -82,7 +82,7 @@ FROZEN_DATA_DIR.mkdir(parents=True, exist_ok=True)
 OBSOLETE_FIGS_DIR.mkdir(parents=True, exist_ok=True)
 
 
-# 閳光偓閳光偓 Problem registry 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
+# Problem registry
 PROBLEMS = {
     "cantilever_216k": {
         "nelx": 120, "nely": 60, "nelz": 30,
@@ -113,7 +113,7 @@ PROBLEMS = {
         "bvp": "bridge",
         "label": "Bridge 216k",
         "n_elem_str": "216,000",
-        "rmin": 3.0,   # larger filter 閳?smoother topology
+        "rmin": 3.0,   # larger filter - smoother topology
     },
     "doubleclamp_216k": {
         "nelx": 120, "nely": 60, "nelz": 30,
@@ -225,11 +225,11 @@ def _quarantine_obsolete_render_outputs(prob_key: str, cfg: dict) -> None:
             continue
         dst = OBSOLETE_FIGS_DIR / src.name
         shutil.move(str(src), str(dst))
-
-
-# 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
+# -----------------------------------------------------------------------------
 # Phase 1: Run SIMP and save density fields
-# 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
+# -----------------------------------------------------------------------------
+
+
 
 def run_simp_save(prob_key: str):
     """Run SIMP-120 via simp_gpu.run_simp_surrogate_gpu and save density .npy."""
@@ -241,7 +241,7 @@ def run_simp_save(prob_key: str):
 
     cfg  = PROBLEMS[prob_key]
     nelx, nely, nelz = cfg["nelx"], cfg["nely"], cfg["nelz"]
-    print(f"  SIMP-120: {cfg['label']}  ({nelx}x{nely}x{nelz} = {n_elem:,} elements)")
+    n_elem = nelx * nely * nelz
 
     print(f"\n{'='*60}")
     print(f"  SIMP-120: {cfg['label']}  ({nelx}x{nely}x{nelz} = {n_elem:,} elements)")
@@ -332,13 +332,13 @@ def run_simp_save(prob_key: str):
 def _build_bridge_problem(nelx, nely, nelz):
     """Build 3D simply-supported beam (bridge analog).
 
-    Left face: fully fixed (pin wall 閳?provides horizontal + vertical reaction).
-    Right face: roller_x (fixes y and z, free in x 閳?vertical reaction only).
+    Left face: fully fixed (pin wall - provides horizontal + vertical reaction).
+    Right face: roller_x (fixes y and z, free in x - vertical reaction only).
     Load:       downward point load at center-top-center of the right half.
 
     This is statically determinate and well-conditioned for Jacobi-PCG.
     The optimal topology is an arch/truss transferring the center load to both
-    supports 閳?distinct from the cantilever and torsion topologies.
+    supports - distinct from the cantilever and torsion topologies.
     """
     from gpu_fem.problem_spec import ProblemSpec, EdgeSupport, PointLoad
     from gpu_fem.bc_generator import generate_bc
@@ -504,11 +504,11 @@ def _build_patchload_cantilever_problem(nelx, nely, nelz, cfg):
         F=F,
         ndof=bc.ndof,
     )
-
-
-# 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
+# -----------------------------------------------------------------------------
 # Phase 2: Render 3D topology isosurfaces with pyvista
-# 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
+# -----------------------------------------------------------------------------
+
+
 
 def render_topology(prob_key: str, rho: np.ndarray, iso_val: float = 0.5, meta: dict | None = None):
     """Render isosurface with pyvista, produce combined PDF."""
@@ -520,8 +520,8 @@ def render_topology(prob_key: str, rho: np.ndarray, iso_val: float = 0.5, meta: 
     meta = meta or {}
     label = meta.get("label", cfg["label"])
 
-    # 閳光偓閳光偓 Reshape to 3D voxel grid 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
-    # edof table built with meshgrid(indexing='ij') + ravel() 閳?C order:
+    # Reshape to a 3D voxel grid.
+    # The edof table is built with meshgrid(indexing='ij') + ravel() in C order:
     # element e = ix*(nely*nelz) + iy*nelz + iz  (ix slowest, iz fastest)
     rho_3d = rho.reshape((nelx, nely, nelz), order="C")
 
@@ -547,7 +547,7 @@ def render_topology(prob_key: str, rho: np.ndarray, iso_val: float = 0.5, meta: 
         bracket_clip = mesh.clip(normal=(0, 1, 0), origin=(0.0, nely * 0.5, 0.0), invert=True)
         bracket_clip.compute_normals(inplace=True)
 
-    # 閳光偓閳光偓 Render two views (problem-specific cameras) 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
+    # Render two views with problem-specific cameras.
     cx, cy, cz = nelx / 2, nely / 2, nelz / 2
 
     doubleclamp_clip = None
@@ -572,7 +572,7 @@ def render_topology(prob_key: str, rho: np.ndarray, iso_val: float = 0.5, meta: 
         camera_configs.update(cfg.get("supplemental_views", {}))
     elif "cantilever" in prob_key:
         # Cantilever: X=length (fixed left, tip right), Y=height, Z=thickness
-        # (a) Side profile: look along +Z 閳?reveals classic 2D truss structure in XY plane
+        # (a) Side profile: look along +Z - reveals classic 2D truss structure in XY plane
         # (b) 3/4 isometric: elevated from front-right
         camera_configs = {
             "profile": dict(
@@ -590,7 +590,7 @@ def render_topology(prob_key: str, rho: np.ndarray, iso_val: float = 0.5, meta: 
         }
     elif "bridge" in prob_key:
         # Bridge: X=span (left=fixed wall, right=roller), Y=height, Z=depth
-        # (a) Front elevation: orthographic view along +Z 閳?shows arch/truss in XY plane
+        # (a) Front elevation: orthographic view along +Z - shows arch/truss in XY plane
         # (b) 3/4 isometric: elevated view showing 3D structural form
         camera_configs = {
             "front": dict(
@@ -632,7 +632,7 @@ def render_topology(prob_key: str, rho: np.ndarray, iso_val: float = 0.5, meta: 
         }
     else:
         # Torsion: X=length, Y and Z=cross-section
-        # (a) End view: look along -X from right 閳?reveals cross-section topology
+        # (a) End view: look along -X from right - reveals cross-section topology
         # (b) 3/4 isometric: shows the full shaft form with holes
         camera_configs = {
             "end": dict(
@@ -789,7 +789,7 @@ def render_topology(prob_key: str, rho: np.ndarray, iso_val: float = 0.5, meta: 
         saved_pngs[view_name] = out_png
         print(f"  Saved PNG: {out_png.relative_to(ROOT)}")
 
-    # 閳光偓閳光偓 Stitch into combined PDF 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
+    # Stitch the rendered views into one combined PDF.
     _make_panel_pdf(prob_key, label, cfg, saved_pngs, meta)
     _quarantine_obsolete_render_outputs(prob_key, cfg)
 
@@ -843,11 +843,11 @@ def _make_panel_pdf(prob_key, label, cfg, saved_pngs, meta=None):
     plt.close(fig)
     _freeze_render_outputs(cfg, saved_pngs, out_pdf)
     print(f"  Saved PDF: {out_pdf.relative_to(ROOT)}")
-
-
-# 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
+# -----------------------------------------------------------------------------
 # Main
-# 閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓閳光偓
+# -----------------------------------------------------------------------------
+
+
 
 def main():
     parser = argparse.ArgumentParser(
