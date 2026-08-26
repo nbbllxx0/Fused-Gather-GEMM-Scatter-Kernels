@@ -1,0 +1,593 @@
+{
+  "device": "NVIDIA GeForce RTX 4090",
+  "sm_count": 128,
+  "target_ms_per_block": 50.0,
+  "blocks": 5,
+  "warmup_ms": 1000.0,
+  "clocks_locked": false,
+  "timing_protocol": "median of `blocks` CUDA-event blocks, each auto-sized to ~target_ms of GPU work, after warmup_ms of steady-state warm-up; SM/mem clock, temperature and power sampled around every block; GPU clocks NOT locked (shared with the desktop compositor)",
+  "path_spec": {
+    "three_stage_fp64": {
+      "vectors": "fp64",
+      "KE": "fp64",
+      "E_e": "fp64",
+      "index": "int32",
+      "logical_B_per_elem": 872,
+      "FLOP_per_elem": 1176
+    },
+    "three_stage_fp64_e32": {
+      "vectors": "fp64",
+      "KE": "fp64",
+      "E_e": "fp32",
+      "index": "int32",
+      "logical_B_per_elem": 868,
+      "FLOP_per_elem": 1176
+    },
+    "three_stage_fp32": {
+      "vectors": "fp32",
+      "KE": "fp32",
+      "E_e": "fp32",
+      "index": "int32",
+      "logical_B_per_elem": 484,
+      "FLOP_per_elem": 1176
+    },
+    "three_stage_fp32_s64": {
+      "vectors": "fp32",
+      "KE": "fp32",
+      "E_e": "fp32",
+      "index": "int64",
+      "logical_B_per_elem": 580,
+      "FLOP_per_elem": 1176
+    },
+    "fused_fp64": {
+      "vectors": "fp64",
+      "KE": "fp64",
+      "E_e": "fp64",
+      "index": "int32",
+      "logical_B_per_elem": 488,
+      "FLOP_per_elem": 1176
+    },
+    "fused_fp32": {
+      "vectors": "fp32",
+      "KE": "fp32",
+      "E_e": "fp32",
+      "index": "int32",
+      "logical_B_per_elem": 292,
+      "FLOP_per_elem": 1176
+    },
+    "fused_ai_fp64": {
+      "vectors": "fp64",
+      "KE": "fp64",
+      "E_e": "fp64",
+      "index": "none",
+      "logical_B_per_elem": 392,
+      "FLOP_per_elem": 1176
+    },
+    "fused_ai_fp32": {
+      "vectors": "fp32",
+      "KE": "fp32",
+      "E_e": "fp32",
+      "index": "none",
+      "logical_B_per_elem": 196,
+      "FLOP_per_elem": 1176
+    },
+    "node_fp64": {
+      "vectors": "fp64",
+      "KE": "fp64",
+      "E_e": "fp64",
+      "index": "none",
+      "logical_B_per_elem": 256,
+      "FLOP_per_elem": 1176
+    },
+    "node_fp32": {
+      "vectors": "fp32",
+      "KE": "fp32",
+      "E_e": "fp32",
+      "index": "none",
+      "logical_B_per_elem": 128,
+      "FLOP_per_elem": 1176
+    }
+  },
+  "rows": [
+    {
+      "size": "64k",
+      "n_elem": 64000,
+      "ndof": 209223,
+      "path": "three_stage_fp64",
+      "vectors": "fp64",
+      "KE": "fp64",
+      "E_e": "fp64",
+      "index": "int32",
+      "logical_B_per_elem": 872,
+      "FLOP_per_elem": 1176,
+      "logical_bytes": 55808000,
+      "flops": 75264000,
+      "logical_intensity": 1.348623853211009,
+      "us_median": 368.83504958379837,
+      "us_min": 323.5547383626302,
+      "us_max": 377.9047648111979,
+      "spread_pct": 14.735591563192669,
+      "us_all": [
+        323.5547383626302,
+        368.83504958379837,
+        352.3632594517299,
+        377.9047648111979,
+        373.028564453125
+      ],
+      "iters_per_block": 105,
+      "model_bandwidth_GBs": 151.30883050017883,
+      "achieved_GFLOPs": 204.05869801400266,
+      "pool_used_bytes": 20625408,
+      "pool_total_bytes": 67591168,
+      "gpu_state": {
+        "before": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 57.0,
+          "power_w": 143.31,
+          "util_pct": 56.0,
+          "mem_used_mib": 2759.0
+        },
+        "after": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 57.0,
+          "power_w": 143.31,
+          "util_pct": 56.0,
+          "mem_used_mib": 2759.0
+        }
+      },
+      "speedup_vs_three_stage_fp64": 1.0
+    },
+    {
+      "size": "64k",
+      "n_elem": 64000,
+      "ndof": 209223,
+      "path": "three_stage_fp64_e32",
+      "vectors": "fp64",
+      "KE": "fp64",
+      "E_e": "fp32",
+      "index": "int32",
+      "logical_B_per_elem": 868,
+      "FLOP_per_elem": 1176,
+      "logical_bytes": 55552000,
+      "flops": 75264000,
+      "logical_intensity": 1.3548387096774193,
+      "us_median": 372.53801981608075,
+      "us_min": 334.78655497233075,
+      "us_max": 400.10411580403644,
+      "spread_pct": 17.533126112591805,
+      "us_all": [
+        352.8772226969401,
+        400.10411580403644,
+        372.53801981608075,
+        386.85353597005206,
+        334.78655497233075
+      ],
+      "iters_per_block": 150,
+      "model_bandwidth_GBs": 149.1176659698401,
+      "achieved_GFLOPs": 202.0303861526866,
+      "pool_used_bytes": 20625408,
+      "pool_total_bytes": 67591168,
+      "gpu_state": {
+        "before": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 58.0,
+          "power_w": 146.62,
+          "util_pct": 59.0,
+          "mem_used_mib": 2759.0
+        },
+        "after": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 58.0,
+          "power_w": 146.62,
+          "util_pct": 59.0,
+          "mem_used_mib": 2759.0
+        }
+      },
+      "speedup_vs_three_stage_fp64": 0.9900601548424225
+    },
+    {
+      "size": "64k",
+      "n_elem": 64000,
+      "ndof": 209223,
+      "path": "three_stage_fp32",
+      "vectors": "fp32",
+      "KE": "fp32",
+      "E_e": "fp32",
+      "index": "int32",
+      "logical_B_per_elem": 484,
+      "FLOP_per_elem": 1176,
+      "logical_bytes": 30976000,
+      "flops": 75264000,
+      "logical_intensity": 2.4297520661157024,
+      "us_median": 132.57053034092354,
+      "us_min": 130.34770934562374,
+      "us_max": 149.0502706388148,
+      "spread_pct": 14.10763104371297,
+      "us_all": [
+        149.0502706388148,
+        130.34770934562374,
+        137.42465507693407,
+        132.2125535670335,
+        132.57053034092354
+      ],
+      "iters_per_block": 246,
+      "model_bandwidth_GBs": 233.65675554243398,
+      "achieved_GFLOPs": 567.7279845411206,
+      "pool_used_bytes": 21462528,
+      "pool_total_bytes": 67591168,
+      "gpu_state": {
+        "before": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 59.0,
+          "power_w": 161.68,
+          "util_pct": 44.0,
+          "mem_used_mib": 2759.0
+        },
+        "after": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 59.0,
+          "power_w": 161.68,
+          "util_pct": 44.0,
+          "mem_used_mib": 2759.0
+        }
+      },
+      "speedup_vs_three_stage_fp64": 2.782179784868385
+    },
+    {
+      "size": "64k",
+      "n_elem": 64000,
+      "ndof": 209223,
+      "path": "three_stage_fp32_s64",
+      "vectors": "fp32",
+      "KE": "fp32",
+      "E_e": "fp32",
+      "index": "int64",
+      "logical_B_per_elem": 580,
+      "FLOP_per_elem": 1176,
+      "logical_bytes": 37120000,
+      "flops": 75264000,
+      "logical_intensity": 2.027586206896552,
+      "us_median": 293.1452469086983,
+      "us_min": 266.17509546414226,
+      "us_max": 368.09193248480136,
+      "spread_pct": 34.76666877440508,
+      "us_all": [
+        266.17509546414226,
+        270.11965362119,
+        293.1452469086983,
+        368.09193248480136,
+        364.68100211989713
+      ],
+      "iters_per_block": 142,
+      "model_bandwidth_GBs": 126.62664802326208,
+      "achieved_GFLOPs": 256.74644495751073,
+      "pool_used_bytes": 21462528,
+      "pool_total_bytes": 67591168,
+      "gpu_state": {
+        "before": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 58.0,
+          "power_w": 139.92,
+          "util_pct": 33.0,
+          "mem_used_mib": 2760.0
+        },
+        "after": {
+          "sm_mhz": 2520.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 57.0,
+          "power_w": 151.93,
+          "util_pct": 21.0,
+          "mem_used_mib": 2760.0
+        }
+      },
+      "speedup_vs_three_stage_fp64": 1.2581989763547967
+    },
+    {
+      "size": "64k",
+      "n_elem": 64000,
+      "ndof": 209223,
+      "path": "fused_fp64",
+      "vectors": "fp64",
+      "KE": "fp64",
+      "E_e": "fp64",
+      "index": "int32",
+      "logical_B_per_elem": 488,
+      "FLOP_per_elem": 1176,
+      "logical_bytes": 31232000,
+      "flops": 75264000,
+      "logical_intensity": 2.4098360655737703,
+      "us_median": 67.23374427014187,
+      "us_min": 66.61842279704308,
+      "us_max": 67.32744121343741,
+      "spread_pct": 1.0545573864598825,
+      "us_all": [
+        67.23374427014187,
+        67.30067184547974,
+        67.32744121343741,
+        66.61842279704308,
+        66.65816130461516
+      ],
+      "iters_per_block": 459,
+      "model_bandwidth_GBs": 464.52864315441616,
+      "achieved_GFLOPs": 1119.43787776556,
+      "pool_used_bytes": 23136768,
+      "pool_total_bytes": 67591168,
+      "gpu_state": {
+        "before": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 61.0,
+          "power_w": 185.72,
+          "util_pct": 100.0,
+          "mem_used_mib": 2760.0
+        },
+        "after": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 61.0,
+          "power_w": 185.72,
+          "util_pct": 100.0,
+          "mem_used_mib": 2760.0
+        }
+      },
+      "speedup_vs_three_stage_fp64": 5.485862100760555
+    },
+    {
+      "size": "64k",
+      "n_elem": 64000,
+      "ndof": 209223,
+      "path": "fused_fp32",
+      "vectors": "fp32",
+      "KE": "fp32",
+      "E_e": "fp32",
+      "index": "int32",
+      "logical_B_per_elem": 292,
+      "FLOP_per_elem": 1176,
+      "logical_bytes": 18688000,
+      "flops": 75264000,
+      "logical_intensity": 4.027397260273973,
+      "us_median": 33.37119963110947,
+      "us_min": 29.14778546589177,
+      "us_max": 66.02551995254144,
+      "spread_pct": 110.50766797208968,
+      "us_all": [
+        29.14778546589177,
+        33.6746146039265,
+        31.926517951779246,
+        66.02551995254144,
+        33.37119963110947
+      ],
+      "iters_per_block": 820,
+      "model_bandwidth_GBs": 560.0038418330811,
+      "achieved_GFLOPs": 2255.35793834145,
+      "pool_used_bytes": 23973888,
+      "pool_total_bytes": 67591168,
+      "gpu_state": {
+        "before": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 61.0,
+          "power_w": 200.48,
+          "util_pct": 90.0,
+          "mem_used_mib": 2760.0
+        },
+        "after": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 61.0,
+          "power_w": 200.48,
+          "util_pct": 90.0,
+          "mem_used_mib": 2760.0
+        }
+      },
+      "speedup_vs_three_stage_fp64": 11.052495974401863
+    },
+    {
+      "size": "64k",
+      "n_elem": 64000,
+      "ndof": 209223,
+      "path": "fused_ai_fp64",
+      "vectors": "fp64",
+      "KE": "fp64",
+      "E_e": "fp64",
+      "index": "none",
+      "logical_B_per_elem": 392,
+      "FLOP_per_elem": 1176,
+      "logical_bytes": 25088000,
+      "flops": 75264000,
+      "logical_intensity": 3.0,
+      "us_median": 65.39225267777394,
+      "us_min": 64.94175404439615,
+      "us_max": 65.82214863358979,
+      "spread_pct": 1.3463285834972896,
+      "us_all": [
+        65.45894087309776,
+        64.94175404439615,
+        64.98324646791052,
+        65.39225267777394,
+        65.82214863358979
+      ],
+      "iters_per_block": 691,
+      "model_bandwidth_GBs": 383.6540105694679,
+      "achieved_GFLOPs": 1150.9620317084039,
+      "pool_used_bytes": 23973888,
+      "pool_total_bytes": 67591168,
+      "gpu_state": {
+        "before": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 61.0,
+          "power_w": 192.76,
+          "util_pct": 100.0,
+          "mem_used_mib": 2760.0
+        },
+        "after": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 61.0,
+          "power_w": 192.76,
+          "util_pct": 100.0,
+          "mem_used_mib": 2760.0
+        }
+      },
+      "speedup_vs_three_stage_fp64": 5.640347816143686
+    },
+    {
+      "size": "64k",
+      "n_elem": 64000,
+      "ndof": 209223,
+      "path": "fused_ai_fp32",
+      "vectors": "fp32",
+      "KE": "fp32",
+      "E_e": "fp32",
+      "index": "none",
+      "logical_B_per_elem": 196,
+      "FLOP_per_elem": 1176,
+      "logical_bytes": 12544000,
+      "flops": 75264000,
+      "logical_intensity": 6.0,
+      "us_median": 45.95154246121752,
+      "us_min": 35.88648879257439,
+      "us_max": 67.48734978934486,
+      "spread_pct": 68.76996789267993,
+      "us_all": [
+        35.88648879257439,
+        45.95154246121752,
+        67.48734978934486,
+        48.04603002404654,
+        42.714382157958106
+      ],
+      "iters_per_block": 837,
+      "model_bandwidth_GBs": 272.9832194552983,
+      "achieved_GFLOPs": 1637.89931673179,
+      "pool_used_bytes": 23973888,
+      "pool_total_bytes": 67591168,
+      "gpu_state": {
+        "before": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 60.0,
+          "power_w": 174.41,
+          "util_pct": 64.0,
+          "mem_used_mib": 2760.0
+        },
+        "after": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 60.0,
+          "power_w": 174.41,
+          "util_pct": 64.0,
+          "mem_used_mib": 2760.0
+        }
+      },
+      "speedup_vs_three_stage_fp64": 8.02660868011319
+    },
+    {
+      "size": "64k",
+      "n_elem": 64000,
+      "ndof": 209223,
+      "path": "node_fp64",
+      "vectors": "fp64",
+      "KE": "fp64",
+      "E_e": "fp64",
+      "index": "none",
+      "logical_B_per_elem": 256,
+      "FLOP_per_elem": 1176,
+      "logical_bytes": 16384000,
+      "flops": 75264000,
+      "logical_intensity": 4.59375,
+      "us_median": 100.05727335184562,
+      "us_min": 99.50440671263623,
+      "us_max": 100.62305867171087,
+      "spread_pct": 1.118011636336486,
+      "us_all": [
+        99.50440671263623,
+        100.05727335184562,
+        100.08309468501757,
+        100.62305867171087,
+        99.94756073510948
+      ],
+      "iters_per_block": 476,
+      "model_bandwidth_GBs": 163.74621705297335,
+      "achieved_GFLOPs": 752.2091845870964,
+      "pool_used_bytes": 23973888,
+      "pool_total_bytes": 67591168,
+      "gpu_state": {
+        "before": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 60.0,
+          "power_w": 155.68,
+          "util_pct": 100.0,
+          "mem_used_mib": 2760.0
+        },
+        "after": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 60.0,
+          "power_w": 155.68,
+          "util_pct": 100.0,
+          "mem_used_mib": 2760.0
+        }
+      },
+      "speedup_vs_three_stage_fp64": 3.6862392630549827
+    },
+    {
+      "size": "64k",
+      "n_elem": 64000,
+      "ndof": 209223,
+      "path": "node_fp32",
+      "vectors": "fp32",
+      "KE": "fp32",
+      "E_e": "fp32",
+      "index": "none",
+      "logical_B_per_elem": 128,
+      "FLOP_per_elem": 1176,
+      "logical_bytes": 8192000,
+      "flops": 75264000,
+      "logical_intensity": 9.1875,
+      "us_median": 31.769688338178643,
+      "us_min": 28.96174066077729,
+      "us_max": 36.27696938229047,
+      "spread_pct": 23.02581203707382,
+      "us_all": [
+        31.769688338178643,
+        36.27696938229047,
+        35.191622966994885,
+        31.078637470298098,
+        28.96174066077729
+      ],
+      "iters_per_block": 1085,
+      "model_bandwidth_GBs": 257.8558502934829,
+      "achieved_GFLOPs": 2369.050624571374,
+      "pool_used_bytes": 23973888,
+      "pool_total_bytes": 67591168,
+      "gpu_state": {
+        "before": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 60.0,
+          "power_w": 166.68,
+          "util_pct": 51.0,
+          "mem_used_mib": 2760.0
+        },
+        "after": {
+          "sm_mhz": 2700.0,
+          "mem_mhz": 10251.0,
+          "temp_c": 60.0,
+          "power_w": 166.68,
+          "util_pct": 51.0,
+          "mem_used_mib": 2760.0
+        }
+      },
+      "speedup_vs_three_stage_fp64": 11.609652750057279
+    }
+  ]
+}

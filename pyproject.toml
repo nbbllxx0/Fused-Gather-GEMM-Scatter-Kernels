@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gpu-fem"
-version = "0.1.0"
+version = "0.2.0"
 description = "Matrix-free 3D SIMP topology optimization with fused gather-GEMM-scatter kernels."
 readme = "README.md"
 requires-python = ">=3.11"

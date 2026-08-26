@@ -1,0 +1,120 @@
+[
+ {
+  "size": "1M",
+  "scheme": "fp64",
+  "inner_path": null,
+  "inner_tol": null,
+  "iters": 900,
+  "true_resid": 5.5419192979065525e-06,
+  "wall_s": 1.4643957996740937,
+  "speedup": 1.0
+ },
+ {
+  "size": "1M",
+  "scheme": "fp32_ir",
+  "inner_path": "fused_fp32",
+  "inner_tol": 0.1,
+  "outer": 5,
+  "inner_iters": 2250,
+  "true_resid": 3.601554610620424e-06,
+  "converged": true,
+  "wall_s": 1.439662499818951,
+  "speedup": 1.0171799292252548
+ },
+ {
+  "size": "1M",
+  "scheme": "fp32_ir",
+  "inner_path": "fused_fp32",
+  "inner_tol": 0.01,
+  "outer": 4,
+  "inner_iters": 2700,
+  "true_resid": 1.993820684231592e-07,
+  "converged": true,
+  "wall_s": 1.5809184000827372,
+  "speedup": 0.9262943613012884
+ },
+ {
+  "size": "1M",
+  "scheme": "fp32_ir",
+  "inner_path": "fused_fp32",
+  "inner_tol": 0.001,
+  "outer": 4,
+  "inner_iters": 12000,
+  "true_resid": 2.401929508871094e-06,
+  "converged": true,
+  "wall_s": 7.133034199941903,
+  "speedup": 0.20529773987148706
+ },
+ {
+  "size": "1M",
+  "scheme": "fp32_ir",
+  "inner_path": "fused_ai_fp32",
+  "inner_tol": 0.1,
+  "outer": 5,
+  "inner_iters": 2000,
+  "true_resid": 3.6879819656363888e-06,
+  "converged": true,
+  "wall_s": 0.9158336003310978,
+  "speedup": 1.5989758392186924
+ },
+ {
+  "size": "1M",
+  "scheme": "fp32_ir",
+  "inner_path": "fused_ai_fp32",
+  "inner_tol": 0.01,
+  "outer": 4,
+  "inner_iters": 3000,
+  "true_resid": 1.7094018690873282e-07,
+  "converged": true,
+  "wall_s": 1.7492694999091327,
+  "speedup": 0.8371470489539565
+ },
+ {
+  "size": "1M",
+  "scheme": "fp32_ir",
+  "inner_path": "fused_ai_fp32",
+  "inner_tol": 0.001,
+  "outer": 4,
+  "inner_iters": 9650,
+  "true_resid": 1.3755102401289056e-07,
+  "converged": true,
+  "wall_s": 4.589017100166529,
+  "speedup": 0.3191088130007083
+ },
+ {
+  "size": "1M",
+  "scheme": "fp32_ir",
+  "inner_path": "node_fp32",
+  "inner_tol": 0.1,
+  "outer": 5,
+  "inner_iters": 2100,
+  "true_resid": 3.662661626123217e-06,
+  "converged": true,
+  "wall_s": 0.7999766003340483,
+  "speedup": 1.8305482923658045
+ },
+ {
+  "size": "1M",
+  "scheme": "fp32_ir",
+  "inner_path": "node_fp32",
+  "inner_tol": 0.01,
+  "outer": 4,
+  "inner_iters": 3050,
+  "true_resid": 1.8861435442436272e-07,
+  "converged": true,
+  "wall_s": 1.0570682003162801,
+  "speedup": 1.3853371043003082
+ },
+ {
+  "size": "1M",
+  "scheme": "fp32_ir",
+  "inner_path": "node_fp32",
+  "inner_tol": 0.001,
+  "outer": 4,
+  "inner_iters": 12000,
+  "true_resid": 4.6399840854237945e-06,
+  "converged": true,
+  "wall_s": 4.19543580012396,
+  "speedup": 0.3490449787435256
+ }
+]

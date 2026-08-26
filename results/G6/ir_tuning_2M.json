@@ -1,0 +1,60 @@
+[
+ {
+  "size": "2M",
+  "scheme": "fp64",
+  "inner_path": null,
+  "inner_tol": null,
+  "iters": 1150,
+  "true_resid": 3.06674674708135e-06,
+  "wall_s": 4.159550500102341,
+  "speedup": 1.0
+ },
+ {
+  "size": "2M",
+  "scheme": "fp32_ir",
+  "inner_path": "node_fp32",
+  "inner_tol": 0.1,
+  "outer": 6,
+  "inner_iters": 3100,
+  "true_resid": 1.0979616991449532e-06,
+  "converged": true,
+  "wall_s": 2.219559700228274,
+  "speedup": 1.8740430814609519
+ },
+ {
+  "size": "2M",
+  "scheme": "fp32_ir",
+  "inner_path": "node_fp32",
+  "inner_tol": 0.01,
+  "outer": 4,
+  "inner_iters": 3150,
+  "true_resid": 5.265440707313277e-07,
+  "converged": true,
+  "wall_s": 2.2208555000834167,
+  "speedup": 1.8729496358255213
+ },
+ {
+  "size": "2M",
+  "scheme": "fp32_ir",
+  "inner_path": "fused_ai_fp32",
+  "inner_tol": 0.1,
+  "outer": 6,
+  "inner_iters": 2950,
+  "true_resid": 1.8711666946031038e-06,
+  "converged": true,
+  "wall_s": 2.767129600048065,
+  "speedup": 1.5032004644921906
+ },
+ {
+  "size": "2M",
+  "scheme": "fp32_ir",
+  "inner_path": "fused_ai_fp32",
+  "inner_tol": 0.01,
+  "outer": 4,
+  "inner_iters": 5850,
+  "true_resid": 4.094917867328015e-06,
+  "converged": true,
+  "wall_s": 5.432340400293469,
+  "speedup": 0.7657013724466956
+ }
+]

@@ -34,6 +34,41 @@ Usage:
 from __future__ import annotations
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# NVRTC source sanitiser
+#
+# CuPy writes the kernel string to a temporary .cu file with
+# `open(path, 'w')`, i.e. using the *locale* codec.  On this Windows host that
+# is cp1252, so a single typographic character in a CUDA comment aborts
+# compilation with UnicodeEncodeError -- and it aborts at first *launch*, not
+# at construction, so it looks like a runtime kernel failure.  The comments in
+# the sources below use en/em dashes, multiplication signs and similar; fold
+# them to ASCII before handing the string to NVRTC.  Comments only: the
+# assertion guarantees we never silently mangle executable code.
+# ─────────────────────────────────────────────────────────────────────────────
+
+_ASCII_FOLD = {
+    ord("─"): "-", ord("━"): "-", ord("═"): "=",
+    ord("—"): "-", ord("–"): "-", ord("−"): "-",
+    ord("×"): "x", ord("·"): "*", ord("≈"): "~",
+    ord("∑"): "sum", ord("→"): "->", ord("≤"): "<=",
+    ord("≥"): ">=", ord("µ"): "u", ord("μ"): "u",
+    ord("§"): "sec.", ord("’"): "'", ord("“"): '"',
+    ord("”"): '"',
+}
+
+
+def _ascii(src: str) -> str:
+    """Fold typographic characters in CUDA comments to ASCII for NVRTC."""
+    out = src.translate(_ASCII_FOLD)
+    residue = sorted({c for c in out if ord(c) > 127})
+    if residue:
+        # Anything left is unexpected; drop it rather than fail the run, but
+        # make the substitution visible in the source that NVRTC receives.
+        out = out.encode("ascii", "replace").decode("ascii")
+    return out
+
+
 # ═══════════════════════════════════════════════════════════════════════════════
 # CUDA source — FP32 fused gather/GEMV/scatter with shared-mem KE and atomic add
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -293,14 +328,14 @@ class FusedMatvec:
 
         # Compile kernels — BF16 requires SM 8.0+ (Ampere/Ada; WMMA bf16).
         # RTX 4090 is SM 8.9, so compile for sm_80 as the minimum compatible.
-        self._k_fp32 = cp.RawKernel(_KERNEL_SRC_FP32, "fused_matvec_fp32",
+        self._k_fp32 = cp.RawKernel(_ascii(_KERNEL_SRC_FP32), "fused_matvec_fp32",
                                     options=("-std=c++14",))
         # CuPy auto-injects -arch=compute_XX for the current device; WMMA BF16
         # requires SM 8.0+ (Ampere/Ada/Hopper), satisfied on any modern GPU
         # we target here.  No additional nvcc flags needed.
         try:
             self._k_bf16 = cp.RawKernel(
-                _KERNEL_SRC_BF16, "fused_matvec_bf16",
+                _ascii(_KERNEL_SRC_BF16), "fused_matvec_bf16",
                 options=("-std=c++14",),
             )
             self._bf16_available = True

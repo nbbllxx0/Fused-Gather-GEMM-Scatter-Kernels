@@ -1,21 +1,13 @@
 """
-gpu_fem — GPU-accelerated 3D topology optimization with adaptive surrogate routing.
+gpu_fem -- matrix-free GPU finite-element operators for 3D SIMP topology
+optimization.
 
-Drop-in replacement for the TO3D pipeline with a GPU FEM backend.
+Import the modules you need directly:
+
+    from gpu_fem.cuda_operators import OperatorSuite
+    from gpu_fem.simp_r2 import run_simp, build_cantilever, pcg
+    from gpu_fem.filter_r2 import ConeFilter
+
+Nothing is imported here, so that importing one operator path does not
+require CuPy, a GPU, or any module other than the one asked for.
 """
-
-from .fem_gpu import GPUFEMSolver, fea_compute_gpu, detect_gpu_backend
-from .surrogate_gpu import SensitivitySurrogateGPU
-from .simp_gpu import run_simp_surrogate_gpu, TO3DParams
-from .solver_v2 import SolverV2, HexGridGMG
-
-__all__ = [
-    "GPUFEMSolver",
-    "fea_compute_gpu",
-    "detect_gpu_backend",
-    "SensitivitySurrogateGPU",
-    "run_simp_surrogate_gpu",
-    "TO3DParams",
-    "SolverV2",
-    "HexGridGMG",
-]

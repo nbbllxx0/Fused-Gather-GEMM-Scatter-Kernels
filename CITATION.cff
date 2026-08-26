@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the accompanying paper."
+title: "Matrix-free finite-element operators for 3D SIMP topology optimization"
+authors:
+  - family-names: Yang
+    given-names: Shaoliang
+  - family-names: Wang
+    given-names: Jun
+  - family-names: Wang
+    given-names: Yunsheng
+preferred-citation:
+  type: article
+  title: "Fused and Node-Owned Matrix-Free Finite-Element Operators for 3D
+    SIMP Topology Optimization on a Single GPU"
+  authors:
+    - family-names: Yang
+      given-names: Shaoliang
+    - family-names: Wang
+      given-names: Jun
+    - family-names: Wang
+      given-names: Yunsheng
+  journal: "Structural and Multidisciplinary Optimization"
+  year: 2026

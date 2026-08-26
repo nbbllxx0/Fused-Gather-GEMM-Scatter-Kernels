@@ -56,7 +56,7 @@ class _AMGSolver:
         if rebuild:
             Kff_csr = csr_matrix(Kff)
             try:
-                # FIX: Removed fatal 'coarse_solver="pinv"' which freezes on large 3D matrices
+                # `coarse_solver="pinv"` freezes on large 3D matrices and is not used
                 self._ml = pyamg.smoothed_aggregation_solver(Kff_csr)
                 self._last_E_e = E_e.copy()
             except Exception as e:
@@ -68,7 +68,7 @@ class _AMGSolver:
             x, info = cg(csr_matrix(Kff), Ff,
                          M=self._ml.aspreconditioner(cycle='V'),
                          rtol=self.cg_tol, maxiter=self.cg_maxiter)
-            # FIX: Only fallback on breakdown (<0). If it hits maxiter (>0), x is still 
+            # Fall back only on breakdown (<0). If it hits maxiter (>0), x is still 
             # a perfectly valid approximate solution. Fallback causes massive unneeded delays.
             if info < 0:
                 print(f"[Warning] PyAMG CG solve failed with info={info}. Falling back to slow spsolve.")

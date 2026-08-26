@@ -1,0 +1,32 @@
+[
+ {
+  "size": "216k",
+  "n_elem": 216000,
+  "scheme": "fp64",
+  "iters": 550,
+  "true_resid": 2.769474814235836e-06,
+  "best": 2.769474814235836e-06,
+  "converged": true,
+  "wall_s": 0.3169610002078116
+ },
+ {
+  "size": "216k",
+  "n_elem": 216000,
+  "scheme": "fp32_replaced",
+  "iters": 40000,
+  "true_resid": 0.0024053032975643873,
+  "best": 0.0011841190280392766,
+  "converged": false,
+  "wall_s": 10.124556900002062
+ },
+ {
+  "size": "216k",
+  "n_elem": 216000,
+  "scheme": "fp32_ir",
+  "outer": 4,
+  "inner_iters": 1600,
+  "true_resid": 3.0747227028103237e-07,
+  "converged": true,
+  "wall_s": 0.8346397997811437
+ }
+]

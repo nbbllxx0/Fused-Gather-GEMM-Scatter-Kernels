@@ -1,0 +1,62 @@
+[
+ {
+  "size": "512k",
+  "n_elem": 512000,
+  "scheme": "fp64",
+  "iters": 750,
+  "true_resid": 9.355168416392375e-07,
+  "best": 9.355168416392375e-07,
+  "converged": true,
+  "wall_s": 0.6882410999387503
+ },
+ {
+  "size": "512k",
+  "n_elem": 512000,
+  "scheme": "fp32_replaced",
+  "iters": 20000,
+  "true_resid": 0.0020209841895848513,
+  "best": 0.0012198957847431302,
+  "converged": false,
+  "wall_s": 7.524459000211209
+ },
+ {
+  "size": "512k",
+  "n_elem": 512000,
+  "scheme": "fp32_ir",
+  "outer": 4,
+  "inner_iters": 2350,
+  "true_resid": 1.2947898269604663e-07,
+  "converged": true,
+  "wall_s": 0.9375188001431525
+ },
+ {
+  "size": "1M",
+  "n_elem": 1000000,
+  "scheme": "fp64",
+  "iters": 900,
+  "true_resid": 5.4005795229007955e-06,
+  "best": 5.4005795229007955e-06,
+  "converged": true,
+  "wall_s": 1.3969984999857843
+ },
+ {
+  "size": "1M",
+  "n_elem": 1000000,
+  "scheme": "fp32_replaced",
+  "iters": 20000,
+  "true_resid": 0.00861121155321598,
+  "best": 0.0030828199815005064,
+  "converged": false,
+  "wall_s": 12.04225719999522
+ },
+ {
+  "size": "1M",
+  "n_elem": 1000000,
+  "scheme": "fp32_ir",
+  "outer": 4,
+  "inner_iters": 3000,
+  "true_resid": 1.6580623646220336e-07,
+  "converged": true,
+  "wall_s": 1.7867100001312792
+ }
+]
